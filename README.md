@@ -1,4 +1,4 @@
-# Todos Client, for Part 1
+# Todos Client (Parts 1 and 2)
 
 ## Setup
 
