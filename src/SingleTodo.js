@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Todo from './Todo'
 import UpdateTodo from './UpdateTodo'
-import axios from 'axios'
+import todosAPI from './todos-api'
 import {Link} from 'react-router-dom'
 
 export default class SingleTodo extends Component {
@@ -14,7 +14,7 @@ export default class SingleTodo extends Component {
 
   async componentDidMount () {
     const todoId = this.props.match.params.todoId
-    const res = await axios.get(`/api/todos/${todoId}`)
+    const res = await todosAPI.get(`/todos/${todoId}`)
     this.setState({todo: res.data})
   }
 

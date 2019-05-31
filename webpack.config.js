@@ -1,24 +1,29 @@
 const path = require('path')
 
 module.exports = {
-  devtool: 'eval',
+  mode: 'development',
+  entry: [
+    '@babel/polyfill', // enables async-await
+    path.join(__dirname, 'src', 'index.js')
+  ],
+  output: {
+    path: path.join(__dirname, 'client'),
+    filename: 'main.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  devtool: 'source-map',
+  watchOptions: {
+    ignored: /node_modules/
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       }
     ]
-  },
-  entry: path.resolve(__dirname, 'client', 'index.js'),
-  output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    compress: true,
-    port: 9000
   }
-};
+}

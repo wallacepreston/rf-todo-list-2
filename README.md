@@ -5,4 +5,4 @@
 ### MacOS/Linux/Windows
 
 * `npm install`
-* `npm start`
+* `npm run build-watch`

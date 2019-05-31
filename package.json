@@ -4,25 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "build-watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
-    "webpack": "^4.32.2"
+    "axios": "^0.18.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2"
   }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+import todosAPI from './todos-api'
 import Todo from './Todo'
 import CreateTodo from './CreateTodo'
 
@@ -12,7 +12,7 @@ export default class Todos extends Component {
   }
 
   async componentDidMount () {
-    const res = await axios.get('https://fullstack-todo-api.herokuapp.com/api/todos/')
+    const res = await todosAPI.get('/todos/')
     this.setState({todos: res.data})
   }
 
