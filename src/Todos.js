@@ -12,8 +12,12 @@ export default class Todos extends Component {
   }
 
   async componentDidMount () {
-    const res = await todosAPI.get('/todos/')
-    this.setState({todos: res.data})
+    try {
+      const res = await todosAPI.get('/todos/')
+      this.setState({todos: res.data})
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   render () {

@@ -13,9 +13,13 @@ export default class SingleTodo extends Component {
   }
 
   async componentDidMount () {
-    const todoId = this.props.match.params.todoId
-    const res = await todosAPI.get(`/todos/${todoId}`)
-    this.setState({todo: res.data})
+    try {
+      const todoId = this.props.match.params.todoId
+      const res = await todosAPI.get(`/todos/${todoId}`)
+      this.setState({todo: res.data})
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   render () {
