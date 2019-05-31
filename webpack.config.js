@@ -2,6 +2,9 @@ const path = require('path')
 
 module.exports = {
   mode: 'development',
+  devServer: {
+    contentBase: 'client',
+  },
   entry: [
     '@babel/polyfill', // enables async-await
     path.join(__dirname, 'src', 'index.js')
