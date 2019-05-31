@@ -22,11 +22,15 @@ export default class Todos extends Component {
     }
   }
 
-  deleteTodo(todoId) {
-    todosAPI.delete(`/todos/${todoId}`)
-    this.setState(oldState => ({
-      todos: oldState.todos.filter(todo => todo.id !== todoId)
-    }))
+  async deleteTodo(todoId) {
+    try {
+      await todosAPI.delete(`/todos/${todoId}`)
+      this.setState(oldState => ({
+        todos: oldState.todos.filter(todo => todo.id !== todoId)
+      }))
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   addTodo(todo) {

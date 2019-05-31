@@ -13,22 +13,24 @@ export default class CreateTodo extends Component {
   }
 
   handleChange(event) {
+    const { name, value } = event.target
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: value
     })
   }
 
   async handleSubmit(event) {
     event.preventDefault()
-    const { data } = await todosAPI.post(
-      '/todos',
-      this.state
-    )
-    this.props.addTodo(data)
-    this.setState({
-      taskName: '',
-      assignee: ''
-    })
+    try {
+      const { data } = await todosAPI.post('/todos', this.state)
+      this.props.addTodo(data)
+      this.setState({
+        taskName: '',
+        assignee: ''
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   render() {
