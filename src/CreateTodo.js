@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import todosAPI from './todos-api';
+import React, { Component } from 'react'
+import todosAPI from './todos-api'
 
 export default class CreateTodo extends Component {
   constructor() {
@@ -8,27 +8,27 @@ export default class CreateTodo extends Component {
       taskName: '',
       assignee: ''
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
-    });
+    })
   }
 
   async handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     const { data } = await todosAPI.post(
       '/todos',
       this.state
-    );
-    this.props.addTodo(data);
+    )
+    this.props.addTodo(data)
     this.setState({
       taskName: '',
       assignee: ''
-    });
+    })
   }
 
   render() {
@@ -50,6 +50,6 @@ export default class CreateTodo extends Component {
         />
         <button type="submit">Submit</button>
       </form>
-    );
+    )
   }
 }

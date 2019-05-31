@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Todo = props => {
-  const todo = props.todo;
+const Todo = (props) => {
+  const todo = props.todo
 
   return (
     <div className="todo row" key={todo.id}>
@@ -25,4 +25,4 @@ const Todo = props => {
   );
 };
 
-export default Todo;
+export default Todo
