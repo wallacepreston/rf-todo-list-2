@@ -6,3 +6,4 @@
 
 * `npm install`
 * `npm run build-watch`
+* open `client/index.html` in your browser
