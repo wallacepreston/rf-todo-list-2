@@ -10,6 +10,7 @@ export default class SingleTodo extends Component {
     this.state = {
       todo: {}
     }
+    this.updateTodo = this.updateTodo.bind(this)
   }
 
   async componentDidMount () {
@@ -22,13 +23,17 @@ export default class SingleTodo extends Component {
     }
   }
 
+  updateTodo(todo){
+    this.setState({todo})
+  }
+
   render () {
     const todo = this.state.todo
 
     return (
       <div id='single-todo'>
         <Todo todo={todo} />
-        <UpdateTodo />
+        {todo.id && <UpdateTodo todo={todo} updateTodo={this.updateTodo}/>}
         <Link to='/'>Back</Link>
       </div>
     )

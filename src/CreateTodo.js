@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import todosAPI from './todos-api'
+import Form from './Form'
 
 export default class CreateTodo extends Component {
   constructor() {
     super();
     this.state = {
       taskName: '',
-      assignee: ''
+      assignee: '',
+      errorMessage: ''
     };
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,32 +28,19 @@ export default class CreateTodo extends Component {
       this.props.addTodo(data)
       this.setState({
         taskName: '',
-        assignee: ''
+        assignee: '',
+        errorMessage: ''
       })
     } catch (err) {
-      console.error(err)
+      this.setState({
+        errorMessage: `There was a problem creating the todo: ${err.message}`
+      })
     }
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="taskName">Task Name:</label>
-        <input
-          type="text"
-          name="taskName"
-          value={this.state.taskName}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="assignee">Assignee:</label>
-        <input
-          type="text"
-          name="assignee"
-          value={this.state.assignee}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <Form {...this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
     )
   }
 }
