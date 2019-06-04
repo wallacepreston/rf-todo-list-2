@@ -3,12 +3,12 @@ import todosAPI from './todos-api'
 import Form from './Form'
 
 export default class UpdateTodo extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      taskName: '',
-      assignee: '',
-      warningMessage:'',
+      taskName: props.todo.taskName,
+      assignee: props.todo.assignee,
+      warningMessage:'Field is required!',
       initialized: false,
       errorMessage: ''
     }
@@ -16,13 +16,6 @@ export default class UpdateTodo extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount () {
-    this.setState({
-      taskName: this.props.todo.taskName,
-      assignee: this.props.todo.assignee,
-      warningMessage: 'Field is required!'
-    })
-  }
 
   handleChange(event) {
     const {name, value} = event.target
@@ -39,7 +32,7 @@ export default class UpdateTodo extends Component {
       this.props.updateTodo(data)
     } catch(err) {
       this.setState({
-        errorMessahe: `There was a problem updating the todo: ${err.message}`
+        errorMessage: `There was a problem updating the todo: ${err.message}`
       })
     }
   }
