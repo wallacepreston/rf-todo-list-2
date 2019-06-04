@@ -26,9 +26,13 @@ export default class UpdateTodo extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    const todoId = this.props.todo.id
     try {
-      const {data} = await todosAPI.put(`/todos/${todoId}`,this.state)
+      const todoId = this.props.todo.id
+      const {taskName, assignee} = this.state
+      const {data} = await todosAPI.put(`/todos/${todoId}`, {
+        taskName,
+        assignee
+      })
       this.props.updateTodo(data)
     } catch(err) {
       this.setState({
