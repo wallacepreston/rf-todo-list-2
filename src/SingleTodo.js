@@ -8,7 +8,8 @@ export default class SingleTodo extends Component {
   constructor () {
     super()
     this.state = {
-      todo: {}
+      todo: {},
+      error: null
     }
     this.updateTodo = this.updateTodo.bind(this)
   }
@@ -17,9 +18,10 @@ export default class SingleTodo extends Component {
     try {
       const todoId = this.props.match.params.todoId
       const res = await todosAPI.get(`/todos/${todoId}`)
-      this.setState({todo: res.data})
+      this.setState({todo: res.data, error: null})
     } catch (err) {
       console.error(err)
+      this.setState({todo: {}, error: err})
     }
   }
 
@@ -28,12 +30,17 @@ export default class SingleTodo extends Component {
   }
 
   render () {
-    const todo = this.state.todo
+    const { todo, error } = this.state
 
     return (
       <div id='single-todo'>
-        <Todo todo={todo} />
-        <UpdateTodo todo={todo} updateTodo={this.updateTodo} key={todo.id}/>
+        {error && <div className="error">{error.message}</div>}
+        {todo.id && (
+          <>
+            <Todo todo={todo} />
+            <UpdateTodo todo={todo} updateTodo={this.updateTodo} key={todo.id} />
+          </>
+        )}
         <Link to='/'>Back</Link>
       </div>
     )

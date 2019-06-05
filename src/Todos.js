@@ -7,7 +7,8 @@ export default class Todos extends Component {
   constructor() {
     super()
     this.state = {
-      todos: []
+      todos: [],
+      error: null
     };
     this.deleteTodo = this.deleteTodo.bind(this)
     this.addTodo = this.addTodo.bind(this)
@@ -16,9 +17,10 @@ export default class Todos extends Component {
   async componentDidMount() {
     try {
       const res = await todosAPI.get('/todos/')
-      this.setState({ todos: res.data })
+      this.setState({ todos: res.data, error: null })
     } catch (err) {
       console.error(err)
+      this.setState({ todos: [], error: err })
     }
   }
 
@@ -26,10 +28,12 @@ export default class Todos extends Component {
     try {
       await todosAPI.delete(`/todos/${todoId}`)
       this.setState(oldState => ({
-        todos: oldState.todos.filter(todo => todo.id !== todoId)
+        todos: oldState.todos.filter(todo => todo.id !== todoId),
+        error: null
       }))
     } catch (err) {
       console.error(err)
+      this.setState({ error: err })
     }
   }
 
@@ -46,6 +50,11 @@ export default class Todos extends Component {
         {this.state.todos.map(todo => (
           <Todo todo={todo} key={todo.id} deleteTodo={this.deleteTodo} />
         ))}
+        { this.state.error &&
+          <div className="error">{
+            this.state.error.message
+          }</div>
+        }
       </div>
     )
   }
