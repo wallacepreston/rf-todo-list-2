@@ -42,10 +42,14 @@ export default class UpdateTodo extends Component {
   }
 
   render () {
-    return <Form
-      {...this.state}
-      handleChange={this.handleChange}
-      handleSubmit={this.handleSubmit}
-    />
+    return !this.props.todo.id ? (
+      <p>Loading todo</p>
+    ) : (
+      <Form
+        {...this.state}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+      />
+    )
   }
 }
