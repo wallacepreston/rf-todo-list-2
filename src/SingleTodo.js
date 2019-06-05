@@ -33,7 +33,7 @@ export default class SingleTodo extends Component {
     return (
       <div id='single-todo'>
         <Todo todo={todo} />
-        {todo.id && <UpdateTodo todo={todo} updateTodo={this.updateTodo}/>}
+        <UpdateTodo todo={todo} updateTodo={this.updateTodo} key={todo.id}/>
         <Link to='/'>Back</Link>
       </div>
     )

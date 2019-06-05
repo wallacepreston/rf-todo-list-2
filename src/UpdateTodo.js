@@ -42,11 +42,10 @@ export default class UpdateTodo extends Component {
   }
 
   render () {
-    return (
-      <Form
+    return <Form
       {...this.state}
       handleChange={this.handleChange}
-      handleSubmit={this.handleSubmit}/>
-    )
+      handleSubmit={this.handleSubmit}
+    />
   }
 }
